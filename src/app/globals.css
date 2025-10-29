@@ -1,26 +1,83 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary: #197fe6;
+  --background: #f6f7f8;
+  --text-headings: #2f4f4f;
+  --text-body: #4b5563;
+  --card: #ffffff;
+  --border: #e5e7eb;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  --background: #111921;
+  --text-headings: #e5e7eb;
+  --text-body: #9ca3af;
+  --card: #1f2937;
+  --border: #374151;
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
+  color: var(--text-body);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer components {
+  .page-title {
+    @apply text-4xl lg:text-5xl font-black leading-tight tracking-[-0.033em];
+    color: var(--text-headings);
+  }
+
+  .card {
+    @apply rounded-xl shadow-sm overflow-hidden;
+    background-color: var(--card);
+    border: 1px solid var(--border);
+  }
+
+  .primary-button {
+    @apply flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-8 flex-1 text-white gap-3 text-base font-bold leading-normal tracking-[0.015em] hover:opacity-90 transition-opacity shadow-md;
+    background-color: var(--primary);
+  }
+
+  .info-box {
+    @apply flex flex-col items-center gap-2 p-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-900/30;
+  }
+
+  .form-label {
+    @apply pb-2 text-base font-medium leading-normal;
+    color: var(--text-headings);
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    @apply flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded p-[15px] text-base font-normal leading-normal;
+    @apply focus:outline-0 focus:ring-2;
+
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text-headings);
+    --tw-ring-color: var(--primary);
+
+    &::placeholder {
+      color: var(--text-body);
+      opacity: 0.8;
+    }
+  }
+
+  .form-input,
+  .form-select {
+    @apply h-12;
+  }
+
+  .secondary-button {
+    @apply flex min-w-[84px] items-center justify-center overflow-hidden rounded-lg h-12 px-8 text-base font-bold;
+    @apply bg-gray-200 text-gray-700;
+    @apply dark:bg-gray-700 dark:text-gray-200;
+  }
+
+  .secondary-button:disabled {
+    @apply cursor-not-allowed opacity-60;
+  }
 }
