@@ -22,6 +22,33 @@ export const ProjectSelectionSection = () => {
       >
         Section 2: Project Selection
       </h2>
+      <div className="text-sm leading-relaxed">
+        <p className="mb-2">
+          Select your preferred projects for the internship. We have three
+          projects available:
+        </p>
+        <ol className="list-decimal list-inside space-y-2 mb-4">
+          <li>
+            <strong>SMILES-2-vec: Molecular Representation Learning</strong> —
+            Learn representations of SMILES into vector space in a generalized
+            manner to predict corresponding chemical properties.
+          </li>
+          <li>
+            <strong>LLM Memory Framework</strong> — A framework for managing
+            memory in large language models; inspiration will draw from
+            relation-related and time-related memory streams.
+          </li>
+          <li>
+            <strong>Simulation based LLM Test Suite</strong> — Develop a test
+            suite that uses simulations to evaluate the performance of large
+            language models in various scenarios.
+          </li>
+        </ol>
+        <p>
+          Please choose your first and second choice projects from the dropdowns
+          below.
+        </p>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-6 mt-4">
         <FormSelect
           label="First Choice Project"

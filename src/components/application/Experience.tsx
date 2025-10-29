@@ -26,7 +26,7 @@ export const ExperienceSection = () => {
           error={errors.skills}
         />
         <FormTextarea
-          label="Previous Experience"
+          label="Previous Experience (Optional)"
           name="previousExperience"
           value={experience.previousExperience || ""}
           onChange={handleTextAreaChange}

@@ -38,15 +38,15 @@ export default function InternshipPage() {
                     </p>
                   </div>
                 </div>
-                <div className="flex flex-col gap-4 items-center">
+                {/* <div className="flex flex-col gap-4 items-center">
                   <p className="text-sm font-semibold">
                     In collaboration with:
                   </p>
                   <div className="flex items-center justify-center gap-6 md:gap-10 flex-wrap">
-                    {/* <CompanyLogo1 className="h-8 w-auto text-gray-400 dark:text-gray-500" /> */}
-                    {/* <CompanyLogo2 className="h-8 w-auto text-gray-400 dark:text-gray-500" /> */}
+                    <CompanyLogo1 className="h-8 w-auto text-gray-400 dark:text-gray-500" />
+                    <CompanyLogo2 className="h-8 w-auto text-gray-400 dark:text-gray-500" />
                   </div>
-                </div>
+                </div> */}
               </div>
 
               <div className="p-4 @container">
