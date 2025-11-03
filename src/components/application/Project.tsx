@@ -5,6 +5,7 @@ const projectOptions = [
   "SMILES-2-vec: Molecular Representation Learning",
   "LLM Memory Framework",
   "Simulation based LLM Test Suite",
+  "Swarm Intelligence in Multi-Agent Robotics",
 ];
 
 export const ProjectSelectionSection = () => {
@@ -42,6 +43,13 @@ export const ProjectSelectionSection = () => {
             <strong>Simulation based LLM Test Suite</strong> — Develop a test
             suite that uses simulations to evaluate the performance of large
             language models in various scenarios.
+          </li>
+          <li>
+            <strong>Swarm Intelligence in Multi-Agent Robotics</strong> — Study
+            coordination and collective behavior in autonomous quadruped robots
+            using Raspberry Pi, ROS, and Gazebo. The project explores how
+            decentralized swarm systems compare to centrally guided teams in
+            dynamic, football-based simulations.
           </li>
         </ol>
         <p>
