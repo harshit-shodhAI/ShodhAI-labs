@@ -6,7 +6,6 @@ const projectOptions = [
   "LLM Memory Framework",
   "Simulation based LLM Test Suite",
   "Swarm Intelligence in Multi-Agent Robotics",
-  "Intelligent bandwidth optimisation",
 ];
 
 export const ProjectSelectionSection = () => {
@@ -51,11 +50,6 @@ export const ProjectSelectionSection = () => {
             using Raspberry Pi, ROS, and Gazebo. The project explores how
             decentralized swarm systems compare to centrally guided teams in
             dynamic, football-based simulations.
-          </li>
-          <li>
-            <strong>Intelligent bandwidth optimisation</strong> — Develop AI
-            driven techniques to optimize bandwidth usage in real-time on router
-            level.
           </li>
         </ol>
         <p>
