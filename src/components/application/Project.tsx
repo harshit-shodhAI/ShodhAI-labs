@@ -6,6 +6,7 @@ const projectOptions = [
   "LLM Memory Framework",
   "Simulation based LLM Test Suite",
   "Swarm Intelligence in Multi-Agent Robotics",
+  "Material Generation and property prediction",
 ];
 
 export const ProjectSelectionSection = () => {
@@ -50,6 +51,12 @@ export const ProjectSelectionSection = () => {
             using Raspberry Pi, ROS, and Gazebo. The project explores how
             decentralized swarm systems compare to centrally guided teams in
             dynamic, football-based simulations.
+          </li>
+          <li>
+            <strong>Material Generation and property prediction</strong> —
+            Develop a materials generation pipeline using generative models to
+            create novel material structures and predict their properties using
+            machine learning techniques.
           </li>
         </ol>
         <p>

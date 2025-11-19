@@ -88,7 +88,7 @@ export default function InternshipPage() {
                     </div>
                     <p className="text-base font-normal leading-relaxed">
                       Under the position the candidate will have the ability to
-                      be involved with one of the three projects of their
+                      be involved with one of the five projects of their
                       choosing. The final aim is to publish the findings in
                       reputed conferences/journals.
                     </p>
