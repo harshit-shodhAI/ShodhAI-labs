@@ -62,7 +62,7 @@ export default function InternshipPage() {
                             <MoneyIcon className="h-8 w-8" />
                           </span>
                           <span className="text-sm font-medium text-text-headings">
-                            ₹10,000/month
+                            ₹15,000 - ₹20,000/month
                           </span>
                           <span className="text-xs">Stipend</span>
                         </div>
