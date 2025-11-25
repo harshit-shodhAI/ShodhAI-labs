@@ -28,8 +28,6 @@ const validateForm = (form: ApplicationFormState["form"]): FormErrors => {
   if (!form.basicDetails.country.trim())
     errors.country = "Country is required.";
   if (!form.basicDetails.dob) errors.dob = "Date of birth is required.";
-  if (!form.basicDetails.nationality.trim())
-    errors.nationality = "Nationality is required.";
 
   // --- Section 2: Project Selection Validation ---
   if (!form.projectSelection.firstChoiceProject) {
@@ -51,12 +49,6 @@ const validateForm = (form: ApplicationFormState["form"]): FormErrors => {
   // --- Section 4: Experience Validation ---
   if (!form.experience.skills.trim()) errors.skills = "Skills are required.";
 
-  // --- Section 5: Documents Validation ---
-  if (!form.documents.resume)
-    errors.resume = "A resume file (PDF) is required.";
-  if (!form.documents.coverLetter.trim())
-    errors.coverLetter = "A cover letter is required.";
-
   return errors;
 };
 
@@ -72,7 +64,7 @@ export interface ApplicationFormActions {
   prevStep: () => void;
   resetForm: () => void;
   validateAndSave: () => boolean;
-  submitApplication: () => Promise<void>;
+  submitApplication: () => Promise<boolean>;
   setShowResumeUploadModal: (isOpen: boolean) => void;
 }
 
@@ -134,44 +126,41 @@ export const createApplicationFormController: StateCreator<
     const isValid = Object.keys(errors).length === 0;
     return isValid;
   },
+
   submitApplication: async () => {
     const { form, score } = get();
-    if (score === null) {
-      toast.error("Quiz score is missing. Please complete the quiz first.");
-      return;
+
+    if (!form.documents.resume) {
+      toast.error("Please upload your resume before submitting.");
+      return false;
     }
 
-    // 2. Set Submitting State
+    if (score === null) {
+      toast.error("Quiz score is missing. Please complete the quiz first.");
+      return false;
+    }
+
     set({ isSubmitting: true });
 
     try {
-      // 3. Call the Service
       const [success, error] = await submitApplicationService(form, score);
-
-      // 4. Handle the service's response
       if (error) {
-        // A. Check for the specific, recoverable "missing resume" error
-        if (error.includes("Resume file is missing")) {
-          // Update the state to trigger the UI popup
-          set({ showResumeUploadModal: true });
-        } else {
-          // B. Handle all other unrecoverable errors with a toast
-          toast.error(error);
-        }
+        toast.error(error);
+        return false;
       } else if (success) {
-        // C. Handle the success case
-        console.log("Submission successful:", success);
-        toast.success(success); // Optional: show success toast
-        get().resetForm(); // Reset the form on successful submission
+        toast.success(success);
+        get().resetForm();
+        return true;
       }
     } catch (e) {
-      // This catches unexpected exceptions within the action itself
       toast.error("An unexpected client-side error occurred.");
+      return false;
     } finally {
-      // 5. ALWAYS reset the submitting state, regardless of outcome
       set({ isSubmitting: false });
     }
+    return false;
   },
+
   setShowResumeUploadModal: (isOpen) => {
     set({ showResumeUploadModal: isOpen });
   },

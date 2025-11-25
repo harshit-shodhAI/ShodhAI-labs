@@ -15,7 +15,6 @@ export interface BasicDetails {
   city: string;
   country: string;
   dob: string;
-  nationality: string;
 }
 
 export interface ProjectSelection {
@@ -75,7 +74,6 @@ export const initialApplicationFormState: ApplicationFormState = {
       city: "",
       country: "",
       dob: "",
-      nationality: "",
     },
     projectSelection: {
       firstChoiceProject: "",

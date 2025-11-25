@@ -26,19 +26,38 @@ export async function POST(request: NextRequest) {
     const details = JSON.parse(detailsString);
     const score = scoreString;
 
-    // 6. Convert File to Buffer for Supabase upload
+    // Log the request for debugging
+    console.log(`[API /apply] Request received for email: ${details.email}`);
+    console.log(`[API /apply] Resume file: ${resumeFile.name}, Size: ${resumeFile.size} bytes`);
+
+    // 6. Check if application already exists (email is primary key)
+    const { data: existingApp } = await supabase
+      .from("application")
+      .select("email")
+      .eq("email", details.email)
+      .single();
+
+    if (existingApp) {
+      console.log(`[API /apply] Duplicate submission blocked for: ${details.email}`);
+      return NextResponse.json(
+        { error: "An application with this email has already been submitted." },
+        { status: 409 } // Conflict status
+      );
+    }
+
+    // 7. Convert File to Buffer for Supabase upload
     const arrayBuffer = await resumeFile.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
-    // 7. Sanitize filename
+    // 8. Sanitize filename
     const sanitizedFilename = resumeFile.name.replace(/[^a-zA-Z0-9-._]/g, "_");
 
-    // 8. Create unique resume path
-    const resumePath = `public/resumes/${
-      details.email
-    }/${Date.now()}-${sanitizedFilename}`;
+    // 9. Create unique resume path (removed 'public/' prefix since bucket is public)
+    const resumePath = `resumes/${details.email}/${Date.now()}-${sanitizedFilename}`;
 
-    // 9. Upload to Supabase Storage
+    console.log(`[API /apply] Uploading resume to: ${resumePath}`);
+
+    // 10. Upload to Supabase Storage
     const { error: uploadError } = await supabase.storage
       .from("applications")
       .upload(resumePath, buffer, {
@@ -50,11 +69,41 @@ export async function POST(request: NextRequest) {
       throw new Error(`Resume Upload Failed: ${uploadError.message}`);
     }
 
-    // 10. Insert data into database
+    // 11. Get public URL for the resume
+    const { data: publicUrlData } = supabase.storage
+      .from("applications")
+      .getPublicUrl(resumePath);
+
+    if (!publicUrlData?.publicUrl) {
+      // Clean up uploaded file if we can't get public URL
+      await supabase.storage.from("applications").remove([resumePath]);
+      throw new Error("Failed to generate public URL for resume");
+    }
+
+    // 12. Insert data into database with correct data types
+    // Explicitly destructure only the fields we need to prevent cached/old fields from being sent
     const applicationData = {
-      ...details,
-      score: score,
-      resume: resumePath,
+      firstName: details.firstName,
+      lastName: details.lastName,
+      email: details.email,
+      phone: parseInt(details.phone, 10), // Convert phone to numeric
+      linkedin: details.linkedin || null,
+      city: details.city,
+      country: details.country,
+      dob: details.dob,
+      firstChoiceProject: details.firstChoiceProject,
+      secondChoiceProject: details.secondChoiceProject || null,
+      institution: details.institution,
+      degreeProgram: details.degreeProgram,
+      yearOfStudy: details.yearOfStudy,
+      currentGrade: details.currentGrade,
+      graduationDate: details.graduationDate,
+      skills: details.skills,
+      previousExperience: details.previousExperience || null,
+      publicationsPatents: details.publicationsPatents || null,
+      coverLetter: details.coverLetter || null,
+      score: parseInt(score, 10), // Convert to number
+      resume: publicUrlData.publicUrl, // Store the public download URL
     };
 
     const { error: insertError } = await supabase
@@ -67,7 +116,7 @@ export async function POST(request: NextRequest) {
       throw new Error(`Database Insert Failed: ${insertError.message}`);
     }
 
-    // 11. Return success response
+    // 13. Return success response
     return NextResponse.json(
       { message: "Application submitted successfully!" },
       { status: 200 }
