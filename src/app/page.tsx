@@ -7,10 +7,8 @@ import Link from "next/link";
 export default function InternshipPage() {
   return (
     <div className="min-h-screen w-full bg-[var(--background-body)] py-12 px-4 sm:px-6">
-
       {/* --- Main Content Card --- */}
       <div className="max-w-4xl mx-auto bg-[var(--background-surface)] rounded-xl shadow-sm border border-[var(--border-default)] overflow-hidden">
-
         {/* Header Section */}
         <div className="p-8 md:p-12 border-b border-[var(--border-default)]">
           <div className="flex flex-col gap-6">
@@ -48,8 +46,10 @@ export default function InternshipPage() {
               <MoneyIcon className="h-6 w-6" />
             </div>
             <div>
-              <p className="text-sm text-[var(--text-secondary)]">Monthly Stipend</p>
-              <p className="font-bold text-[var(--text-primary)]">₹15,000 - ₹20,000</p>
+              <p className="text-sm text-[var(--text-secondary)]">
+                Monthly Stipend
+              </p>
+              <p className="font-bold text-[var(--text-primary)]">₹25,000</p>
             </div>
           </div>
 
@@ -69,23 +69,30 @@ export default function InternshipPage() {
             </div>
             <div>
               <p className="text-sm text-[var(--text-secondary)]">Perks</p>
-              <p className="font-bold text-[var(--text-primary)]">Accommodation Provided</p>
+              <p className="font-bold text-[var(--text-primary)]">
+                Accommodation Provided
+              </p>
             </div>
           </div>
         </div>
 
         {/* Body Content */}
         <div className="p-8 md:p-12 flex flex-col gap-10">
-
           {/* About */}
           <section>
             <h3 className="text-xl font-bold text-[var(--text-primary)] mb-4 border-b border-[var(--border-default)] pb-2">
               About Shodh AI
             </h3>
             <p className="text-[var(--text-secondary)] leading-relaxed text-base">
-              At Shodh AI, we are a deep-tech startup backed by the <strong>IndiaAI Mission</strong>, committed to building advanced AI systems for high-impact scientific domains.
-              In our Research division, we are developing AI models that accelerate the discovery, characterization, and design of next-generation materials.
-              From predicting complex properties using microstructures to generating novel material candidates, our mission is to push the boundaries of computational material science.
+              At Shodh AI, we are a deep-tech startup backed by the{" "}
+              <strong>IndiaAI Mission</strong>, committed to building advanced
+              AI systems for high-impact scientific domains. In our Research
+              division, we are developing AI models that accelerate the
+              discovery, characterization, and design of next-generation
+              materials. From predicting complex properties using
+              microstructures to generating novel material candidates, our
+              mission is to push the boundaries of computational material
+              science.
             </p>
           </section>
 
@@ -96,15 +103,23 @@ export default function InternshipPage() {
             </h3>
             <div className="grid md:grid-cols-2 gap-8">
               <div className="bg-[var(--neutral-50)] p-6 rounded-lg border border-[var(--border-default)]">
-                <h4 className="font-bold text-[var(--text-primary)] mb-2">Predictive Modeling</h4>
+                <h4 className="font-bold text-[var(--text-primary)] mb-2">
+                  Predictive Modeling
+                </h4>
                 <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                  Develop ML/DL pipelines (CNNs, Vision Transformers, GNNs) to predict mechanical, thermal, and structural properties directly from microstructure images and simulation data.
+                  Develop ML/DL pipelines (CNNs, Vision Transformers, GNNs) to
+                  predict mechanical, thermal, and structural properties
+                  directly from microstructure images and simulation data.
                 </p>
               </div>
               <div className="bg-[var(--neutral-50)] p-6 rounded-lg border border-[var(--border-default)]">
-                <h4 className="font-bold text-[var(--text-primary)] mb-2">Generative Design</h4>
+                <h4 className="font-bold text-[var(--text-primary)] mb-2">
+                  Generative Design
+                </h4>
                 <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                  Experiment with VAEs, GANs, and Diffusion Models to synthesize hypothetical microstructures. Incorporate physics priors to ensure AI systems remain scientifically valid.
+                  Experiment with VAEs, GANs, and Diffusion Models to synthesize
+                  hypothetical microstructures. Incorporate physics priors to
+                  ensure AI systems remain scientifically valid.
                 </p>
               </div>
             </div>
@@ -119,9 +134,12 @@ export default function InternshipPage() {
               {[
                 "Design & Experiment: Implement and test deep learning architectures (CNNs, ViTs, GNNs).",
                 "Drive Technical Exploration: Propose new ideas in generative modeling and physics-informed ML.",
-                "Ensure Reproducibility: Maintain strict research discipline regarding code quality and logging."
+                "Ensure Reproducibility: Maintain strict research discipline regarding code quality and logging.",
               ].map((item, idx) => (
-                <li key={idx} className="flex gap-3 text-[var(--text-secondary)]">
+                <li
+                  key={idx}
+                  className="flex gap-3 text-[var(--text-secondary)]"
+                >
                   <span className="text-[var(--primary-500)] mt-1.5">•</span>
                   <span>{item}</span>
                 </li>
@@ -144,10 +162,25 @@ export default function InternshipPage() {
                     "B.Tech/M.Tech in CS, Materials Science, or related field.",
                     "Strong command of Python & PyTorch/TensorFlow.",
                     "Solid understanding of Optimization & Computer Vision.",
-                    "Ability to read and implement academic papers."
+                    "Ability to read and implement academic papers.",
                   ].map((item, idx) => (
-                    <li key={idx} className="flex gap-3 text-[var(--text-secondary)] text-sm">
-                      <svg className="w-5 h-5 text-[var(--success-500)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                    <li
+                      key={idx}
+                      className="flex gap-3 text-[var(--text-secondary)] text-sm"
+                    >
+                      <svg
+                        className="w-5 h-5 text-[var(--success-500)] shrink-0"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M5 13l4 4L19 7"
+                        ></path>
+                      </svg>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -163,10 +196,25 @@ export default function InternshipPage() {
                     "Experience with Materials Datasets.",
                     "Knowledge of GNNs, Diffusion Models, or PINNs.",
                     "Prior work with Microscopy images.",
-                    "Knowledge of CUDA / GPU optimization."
+                    "Knowledge of CUDA / GPU optimization.",
                   ].map((item, idx) => (
-                    <li key={idx} className="flex gap-3 text-[var(--text-secondary)] text-sm">
-                      <svg className="w-5 h-5 text-[var(--primary-400)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    <li
+                      key={idx}
+                      className="flex gap-3 text-[var(--text-secondary)] text-sm"
+                    >
+                      <svg
+                        className="w-5 h-5 text-[var(--primary-400)] shrink-0"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M13 10V3L4 14h7v7l9-11h-7z"
+                        ></path>
+                      </svg>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -181,7 +229,8 @@ export default function InternshipPage() {
               Ready to shape the future of Material Science?
             </h3>
             <p className="text-[var(--text-secondary)] max-w-lg mb-2">
-              Join a national-level mission contributing to India’s scientific growth.
+              Join a national-level mission contributing to India’s scientific
+              growth.
             </p>
             <Link href="/application" className="w-full sm:w-auto">
               <button className="button_primary w-full sm:w-auto px-10 py-3 text-base">
@@ -189,7 +238,6 @@ export default function InternshipPage() {
               </button>
             </Link>
           </div>
-
         </div>
       </div>
 
